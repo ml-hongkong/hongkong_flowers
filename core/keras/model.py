@@ -39,9 +39,6 @@ class FlowerClassificationModel(object):
         sess = tf.Session(config=tfconfig)
         K.set_session(sess)
 
-        # set training phase
-        K.set_learning_phase(bool(1))
-
         # setup model
         model_choice, opt_choice, loss_choice, metric_choice = args.configs
 
@@ -87,9 +84,6 @@ class FlowerClassificationModel(object):
         print ('Successfully loaded model. (%.4fs)' % (time.time() - start_time))
     def fit(self):
 
-        # set training phase
-        K.set_learning_phase(bool(1))
-
         # datasets and dataloader for training
         train_generator = self.transform.flow_from_directory(self.train_dir,
                                                              batch_size=self.args.batch_size,
@@ -119,9 +113,6 @@ class FlowerClassificationModel(object):
 
     def evaluate(self):
 
-        # set testing phase
-        K.set_learning_phase(bool(0))
-
         # datasets and dataloader for test mode
         test_generator = self.transform.flow_from_directory(self.test_dir,
                                                             batch_size=self.args.test_batch_size,
@@ -149,9 +140,6 @@ class FlowerClassificationModel(object):
                 w.writerow(test_result_dict)
 
     def predict(self, x):
-
-        # set testing phase
-        K.set_learning_phase(bool(0))
 
         return self.model.predict(x)
 

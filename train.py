@@ -1,7 +1,10 @@
 import os
+import numpy as np
 
 # custom modules
 from options import Options
+
+np.random.seed(1337)  # for reproducibility
 
 def train():
     # setting up, options contains all our params

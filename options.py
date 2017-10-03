@@ -12,7 +12,7 @@ CONFIGS = [
 #      model name,   optimizer,            loss              metric
 [ "model_template",     "adam",        "CE_loss",    "simple_metric"],  # 0
 [ "model_template",      "sgd",        "CE_loss",    "simple_metric"],  # 1
-[ "resnet50_model",      "sgd",        "CE_loss",    "simple_metric"],  # 2
+[ "resnet50_model",  "rmsprop",        "CE_loss",    "simple_metric"],  # 2
 ]
 TRANSFORMS = [
     'to_tensor_only',      #0
@@ -51,14 +51,14 @@ class Options(object):   # NOTE: shared across all modules
 
         # set early stopping and logging toggles
         self.early_stopping   = False        # Toggle early_stopping
-        self.patience         = 50           # number of epochs to consider before early stopping
+        self.patience         = 10           # number of epochs to consider before early stopping
         self.log_interval     = 1            # print every log_interval batch
         self.visualize        = False        # tensorboard for keras, visdom for pytorch
 
         # reduce lr on plateau
-        self.reduce_lr        = None         # Reduce lr on Plateau rate
+        self.reduce_lr        = 0.5         # Reduce lr on Plateau rate
         self.lr_patience      = 10           # patience for reducing lr
-        self.min_lr           = 1E-5         # minimum lr that it can be reduced to
+        self.min_lr           = 5E-6         # minimum lr that it can be reduced to
 
         # saving models
         self.save_best        = True         # saves the best model weights
@@ -70,10 +70,10 @@ class Options(object):   # NOTE: shared across all modules
         self.load_file        = None        # load previous model weights when training if it exists
 
         # USE YOUR OWN DATA DIR: NEED ABSOLUTE PATH!
-        self.data_dir         = '/workspace/hongkong_flowers/dataset/sorted/'
-        self.log_dir          = "/workspace/hongkong_flowers/logs/"
-        self.ckpt_dir         = '/workspace/hongkong_flowers/checkpoints/'
-        self.pretrained_file  = "/workspace/hongkong_flowers/pretrained_models/fine-tuned-resnet50-weights.h5"
+        self.data_dir         = '/home/indiejoseph/Projects/hongkong_flowers/dataset/'
+        self.log_dir          = "/home/indiejoseph/Projects/hongkong_flowers/logs/"
+        self.ckpt_dir         = '/home/indiejoseph/Projects/hongkong_flowers/checkpoints/'
+        self.pretrained_file  = "/home/indiejoseph/Projects/hongkong_flowers/pretrained_models/fine-tuned-resnet50-weights.h5"
 
         # for the image size
         self.width     = 300
@@ -105,4 +105,3 @@ class Options(object):   # NOTE: shared across all modules
         # keras settings
         if self.library == "keras":
             self.img_size  = (self.height, self.width, self.channel)
-
