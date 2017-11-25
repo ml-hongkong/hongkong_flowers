@@ -96,7 +96,7 @@ class Options(object):   # NOTE: shared across all modules
         if self.library == "keras":
             self.img_size  = (self.height, self.width, self.channel)
 
-    def initializeModel(self):
+    def initializeModel(self, input_tensor=None):
 
         # choose model from library
         if self.library == 'pytorch':
@@ -106,4 +106,4 @@ class Options(object):   # NOTE: shared across all modules
         else:
             raise ValueError('Library not supported.')
 
-        return FlowerClassificationModel(self)
+        return FlowerClassificationModel(self, input_tensor)

@@ -74,7 +74,7 @@ if __name__ == '__main__':
 
     # initialize model
     # model = options.FlowerClassificationModel(options, input_tensor=input_tensor)
-    model = options.initializeModel()
+    model = options.initializeModel(input_tensor=input_tensor)
 
     my_model = model.model
 
