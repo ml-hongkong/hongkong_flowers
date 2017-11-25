@@ -73,7 +73,8 @@ if __name__ == '__main__':
     input_tensor = preprocess_input(image)
 
     # initialize model
-    model = options.FlowerClassificationModel(options, input_tensor=input_tensor)
+    # model = options.FlowerClassificationModel(options, input_tensor=input_tensor)
+    model = options.initializeModel()
 
     my_model = model.model
 
