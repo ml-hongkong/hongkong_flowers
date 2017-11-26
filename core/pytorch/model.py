@@ -12,7 +12,7 @@ from core.pytorch.parser import ModelsDict, OptimsDict, LossesDict, MetricsDict,
 from core.pytorch.utils import AverageMeter
 
 class FlowerClassificationModel(object):
-    def __init__(self, args):
+    def __init__(self, args, input_tensor=None):
         super(self.__class__, self).__init__()
 
         # params
