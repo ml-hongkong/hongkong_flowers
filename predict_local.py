@@ -6,6 +6,7 @@ import base64
 import tensorflow as tf
 import numpy as np
 import keras
+import csv
 
 from tensorflow.contrib.session_bundle import exporter
 from keras import backend as K
@@ -48,7 +49,19 @@ def decode_and_resize(image_str_tensor):
 if __name__ == '__main__':
     K.set_learning_phase(bool(0))
 
-    classes = [i for i in os.listdir('./dataset/train/') if os.path.isdir('./dataset/train/' + i)]
+    # classes = [i for i in os.listdir('./dataset/train/') if os.path.isdir('./dataset/train/' + i)]
+
+    # with open("classes_order.csv", 'w', newline='') as f:
+    #     writer = csv.writer(f)
+    #     for val in classes:
+    #         writer.writerow([val])
+
+    with open('classes_order.csv', 'r') as f:
+        reader = csv.reader(f)
+        orginal_list = list(reader)
+        classes = []
+        for val in orginal_list:
+            classes.append(val[0])
 
     tf_model_path = osp.join(model_dir, 'export')
 
