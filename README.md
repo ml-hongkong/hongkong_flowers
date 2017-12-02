@@ -36,7 +36,7 @@ Fine-tuning
 ===========
 Fine-tuning the pre-trained ResNet50 with Oxford 102 flowers dataset
 
-`$./finetuning/bootstrap.sh` to download oxford102 dataset
+`$PYTHONPATH=YOURWORKSPACE ./finetuning/bootstrap.sh` to download oxford102 dataset
 
 `$python resnet50.py` to start fine-tuning
 
